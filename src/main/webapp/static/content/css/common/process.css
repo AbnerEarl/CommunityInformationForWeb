@@ -1,0 +1,17 @@
+.opt-buttons {
+	margin: 10px;
+}
+
+.opt-buttons .easyui-linkbutton {
+	margin-right: 5px
+}
+
+.basic-info {
+	position: relative;
+	padding: 10px
+}
+
+.editor-state {
+	height: 200px
+}
+

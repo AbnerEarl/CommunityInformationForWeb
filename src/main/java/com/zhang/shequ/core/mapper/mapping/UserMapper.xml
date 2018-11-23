@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhang.shequ.core.model.dto.UserDto">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="name" property="name" />
+        <result column="idcard" property="idcard" />
+        <result column="avatar" property="avatar" />
+        <result column="sex" property="sex" />
+        <result column="address" property="address" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="role_id" property="roleId" />
+        <result column="role_Name" property="roleName" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    
+    <select id="getUserDtoByUsername" resultMap="BaseResultMap">
+    	select u.*,r.name role_name from sys_user u, sys_role r where u.role_id = r.id
+    	and u.username = #{username}
+    </select>
+    
+   	<select id="getUserList" resultMap="BaseResultMap">
+		select u.*,r.name role_name from sys_user u join sys_role r
+		where u.role_id = r.id 
+		<if test="condition != null and condition != ''">
+			and (u.phone like CONCAT('%',#{condition},'%')
+			or u.username like CONCAT('%',#{condition},'%')
+			or u.name like CONCAT('%',#{condition},'%'))
+		</if>
+		<if test="roleId != null and roleId != -1">
+			and u.role_id = #{roleId}
+		</if>
+		<if test="status != null and status != -1">
+			and u.status = #{status}
+		</if>
+	</select>
+
+</mapper>

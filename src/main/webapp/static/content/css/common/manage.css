@@ -1,0 +1,30 @@
+.easyui-linkbutton {
+	margin-right: 5px
+}
+
+.conditions.hide {
+	display: none
+}
+
+.conditions .con-span {
+	display: inline-block;
+	width: 70px;
+	text-align: center;
+}
+
+.conditions input.input_2 {
+	height: 23px;
+	line-height: 23px;
+	margin-right: 5px;
+}
+
+.conditions select.input_2 {
+	height: 29px;
+	width: 185px;
+	line-height: 29px;
+	margin-right: 5px;
+}
+
+.opt-buttons {
+	margin-left: -10px
+}

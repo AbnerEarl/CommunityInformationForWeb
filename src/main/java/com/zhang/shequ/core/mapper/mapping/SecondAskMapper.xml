@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.SecondAskMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhang.shequ.core.model.dto.SecondAskDto">
+        <id column="id" property="id" />
+        <result column="content" property="content" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_avatar" property="userAvatar" />
+        <result column="second_id" property="secondId" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    
+    <select id="getSecondAskListByPage" resultMap="BaseResultMap">
+    	select s.*,u.name user_name,u.avatar user_avatar from sys_second_ask s join sys_user u on s.user_id = u.id
+    	where 1 = 1 
+    	<if test="secondId != null and secondId != -1">
+    		and s.second_id = #{secondId}
+    	</if>
+    	order by s.create_time desc
+    </select>
+    
+    <select id="getSecondAskListParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select s.*,u.name user_name,u.avatar user_avatar from sys_second_ask s join sys_user u on s.user_id = u.id
+    	where 1 = 1 
+    	<if test="secondId != null and secondId != -1">
+    		and s.second_id = #{secondId}
+    	</if>
+    	order by s.create_time desc
+    </select>
+
+</mapper>

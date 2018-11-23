@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.OrderRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhang.shequ.core.entity.OrderRecord">
+        <id column="id" property="id" />
+        <result column="farm_order_id" property="farmOrderId" />
+        <result column="farm_product_id" property="farmProductId" />
+        <result column="name" property="name" />
+        <result column="picture" property="picture" />
+        <result column="price" property="price" />
+        <result column="num" property="num" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+</mapper>

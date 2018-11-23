@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.ScheduleJobMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhang.shequ.core.entity.ScheduleJob">
+        <id column="id" property="id" />
+        <result column="job_name" property="jobName" />
+        <result column="job_group" property="jobGroup" />
+        <result column="job_status" property="jobStatus" />
+        <result column="cron_expression" property="cronExpression" />
+        <result column="remarks" property="remarks" />
+        <result column="bean_class" property="beanClass" />
+        <result column="is_concurrent" property="isConcurrent" />
+        <result column="spring_id" property="springId" />
+        <result column="method_name" property="methodName" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+</mapper>

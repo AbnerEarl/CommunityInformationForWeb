@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.FarmOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhang.shequ.core.model.dto.FarmOrderDto">
+        <id column="id" property="id" />
+        <result column="farm_id" property="farmId" />
+        <result column="farm_name" property="farmName" />
+        <result column="status" property="status" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="user_phone" property="userPhone" />
+        <result column="user_address" property="userAddress" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    
+    <select id="getOrderList" resultMap="BaseResultMap">
+    	select fo.*,f.name farm_name,u.name user_name, u.phone user_phone from sys_farm_order fo,sys_farm f,sys_user u
+    	where fo.user_id = u.id and fo.farm_id = f.id and fo.user_id = #{userId}
+    </select>
+    
+    <select id="getFarmOrderListByPage" resultMap="BaseResultMap" parameterType="com.zhang.shequ.core.entity.FarmOrder">
+    	select fo.*,f.name farm_name,u.name user_name, u.phone user_phone, u.address user_address from sys_farm_order fo,sys_farm f,sys_user u
+    	where fo.user_id = u.id and fo.farm_id = f.id and fo.farm_id = #{farmId}
+    	<if test="status != null and status != -1">
+    		and fo.status = #{status}
+    	</if>
+    </select>
+
+</mapper>

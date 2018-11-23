@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.FarmMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhang.shequ.core.model.dto.FarmDto">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="pictures" property="pictures" />
+        <result column="address" property="address" />
+        <result column="remarks" property="remarks" />
+        <result column="linkphone" property="linkphone" />
+        <result column="linkman" property="linkman" />
+        <result column="user_id" property="userId" />
+        <result column="user_name" property="userName" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    
+    <select id="getFarmListByPage" parameterType="com.zhang.shequ.core.entity.Farm" resultMap="BaseResultMap">
+    	select f.*,u.name user_name from sys_farm f join sys_user u on f.user_id = u.id
+    	where 1 = 1
+    	<if test="status != null and status != -1">
+    		and s.status = #{status}
+    	</if>
+    	order by f.create_time desc
+    </select>
+
+</mapper>

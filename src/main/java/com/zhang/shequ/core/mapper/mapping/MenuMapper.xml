@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.shequ.core.mapper.MenuMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zhang.shequ.core.entity.Menu">
+		<id column="id" property="id" />
+		<result column="parent_id" property="parentId" />
+		<result column="name" property="name" />
+		<result column="icon" property="icon" />
+		<result column="url" property="url" />
+		<result column="sort_id" property="sortId" />
+		<result column="status" property="status" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+
+	<select id="getRoleMenu" resultMap="BaseResultMap">
+		select m.* from sys_menu m
+		where m.id in
+		(select rm.menu_id
+		from sys_role_menu rm where rm.role_id
+		= #{roleId})
+	</select>
+
+	<select id="listMenuByUserId" resultMap="BaseResultMap">
+		select m.* from sys_menu
+		m join sys_role_menu rm join sys_user u
+		where u.role_id = rm.role_id
+		and rm.menu_id = m.id and m.status = 0
+		and u.id = #{userId}
+		order by
+		m.sort_id asc
+	</select>
+
+</mapper>
